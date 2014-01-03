@@ -25,9 +25,9 @@ app.configure(function () {
     //app.use(express.basicAuth('username', 'password'));
     app.use(app.router);
     app.set('view engine', 'jade');
-    app.set('views', path.join(__dirname, 'templates'));
+    app.set('views', path.join(__dirname, 'src', 'templates'));
     // static server
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, 'src', 'public')));
 });
 
 // development only
@@ -40,8 +40,8 @@ app.configure('development', function () {
 /**
  * Routes
  */
-var site = require('./apps/site/views'),
-    todo = require('./apps/todo/api');
+var site = require('./src/apps/site/views'),
+    todo = require('./src/apps/todo/api');
 
 // global
 app.get('/', site.index);
@@ -54,5 +54,5 @@ app.get('/todos', todo.list);
  * start server
  */
 app.listen(app.get('port'), function () {
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });
