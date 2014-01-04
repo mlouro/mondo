@@ -25,7 +25,7 @@ app.configure(function () {
     //app.use(express.basicAuth('username', 'password'));
     app.use(app.router);
     app.set('view engine', 'jade');
-    app.set('views', path.join(__dirname, 'src', 'templates'));
+    app.set('views', path.join(__dirname, 'src'));
     // static server
     app.use(express.static(path.join(__dirname, 'src', 'public')));
 });
@@ -40,15 +40,10 @@ app.configure('development', function () {
 /**
  * Routes
  */
-var site = require('./src/apps/site/views'),
-    todo = require('./src/apps/todo/api');
+var site = require('./src/site');
 
 // global
 app.get('/', site.index);
-
-// todos
-app.get('/todos', todo.list);
-
 
 /**
  * start server
