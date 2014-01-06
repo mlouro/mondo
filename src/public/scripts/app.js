@@ -1,1 +1,1 @@
-var underscore = require('underscore');
+var _ = require('underscore');
