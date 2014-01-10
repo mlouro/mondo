@@ -25,9 +25,9 @@ app.configure(function () {
     //app.use(express.basicAuth('username', 'password'));
     app.use(app.router);
     app.set('view engine', 'jade');
-    app.set('views', path.join(__dirname, 'src'));
+    app.set('views', __dirname);
     // static server
-    app.use(express.static(path.join(__dirname, 'src', 'public')));
+    app.use(express.static(path.join(__dirname, 'public')));
 });
 
 // development only
@@ -40,7 +40,7 @@ app.configure('development', function () {
 /**
  * Routes
  */
-var site = require('./src/site');
+var site = require('./site');
 
 // global
 app.get('/', site.index);

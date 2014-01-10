@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function(grunt) {
 
     // Project configuration.
@@ -5,13 +7,13 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         develop: {
             server: {
-                file: 'app.js'
+                file: 'src/app.js'
             }
         },
         watch: {
             node: {
                 files: [
-                    'app.js', 
+                    'src/app.js', 
                     'src/site.js'
                 ],
                 tasks: ['develop'],
@@ -23,7 +25,7 @@ module.exports = function(grunt) {
             },
             client: {
                 files: [
-                    'src/public/scripts/**/*.js'
+                    'src/scripts/**/*.js'
                 ],
                 tasks: ['browserify:dev', 'jshint'],
             },
@@ -39,27 +41,30 @@ module.exports = function(grunt) {
             }
         },
         jshint: {
-            src: ['Gruntfile.js', 'src/public/scripts/**/*.js'],
+            src: ['Gruntfile.js', 'src/scripts/**/*.js'],
             options: {
+                globalstrict: true,
                 // options here to override JSHint defaults
                 globals: {
                     jQuery: true,
                     console: true,
                     module: true,
-                    document: true
+                    require: true,
+                    document: true,
+                    window: true
                 }
             }
         },
         browserify: {
             prod: {
-                src: ['src/public/scripts/app.js'],
+                src: ['src/scripts/app.js'],
                 dest: 'src/public/build.js'
             },
             dev: {
                 options: {
                     debug: true
                 },
-                src: ['src/public/scripts/app.js'],
+                src: ['src/scripts/app.js'],
                 dest: 'src/public/build.js'
             }
         }
