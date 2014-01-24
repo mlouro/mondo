@@ -1,6 +1,6 @@
 'use strict';
 
-var Backbone = require('Backbone');
+var Backbone = require('backbone');
 
 var router = Backbone.Router.extend({
 
