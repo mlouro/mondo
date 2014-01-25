@@ -8,12 +8,20 @@
   "browser": {
     "jquery": "./src/vendor/jquery/jquery-2.0.3.js"
   },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
   "dependencies": {
     "express": "3.4.7",
     "jade": "*",
     "browserify": "*",
     "underscore": "~1.5.2",
-    "backbone": "~1.1.0"
+    "backbone": "~1.1.0",
+    "envify": "~0.2.0",
+    "react": "~0.8.0",
+    "reactify": "~0.5.1"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

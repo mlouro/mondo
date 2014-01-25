@@ -1,6 +1,8 @@
 'use strict';
 
-var Backbone = require('backbone');
+var Backbone = require('backbone'),
+    React = require('react'),
+    TodoBox = require('./todo/TodoBox.jsx');
 
 var router = Backbone.Router.extend({
 
@@ -14,7 +16,8 @@ var router = Backbone.Router.extend({
     },
 
     index: function () {
-        console.log('index');
+        console.log('router:index');
+        React.renderComponent(TodoBox({}), document.getElementById('content'));
     }
 
 });

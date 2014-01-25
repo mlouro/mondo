@@ -7,14 +7,14 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         develop: {
             server: {
-                file: 'src/app.js'
+                file: 'src/server.js'
             }
         },
         watch: {
             node: {
                 files: [
-                    'src/app.js', 
-                    'src/site.js'
+                    'src/server.js',
+                    'index.html'
                 ],
                 tasks: ['develop'],
                 options: {
@@ -25,14 +25,13 @@ module.exports = function(grunt) {
             },
             client: {
                 files: [
-                    'src/scripts/**/*.js'
+                    'src/scripts/**/*.js*'
                 ],
                 tasks: ['browserify:dev', 'jshint'],
             },
             reload: {
                 files: [
-                    'src/index.jade',
-                    'src/public/build.js'
+                    'src/public/js/build.js'
                 ],
                 options: {
                     livereload: true,
@@ -44,6 +43,7 @@ module.exports = function(grunt) {
             src: ['Gruntfile.js', 'src/scripts/**/*.js'],
             options: {
                 globalstrict: true,
+                newcap: false,
                 // options here to override JSHint defaults
                 globals: {
                     jQuery: true,
@@ -58,14 +58,14 @@ module.exports = function(grunt) {
         browserify: {
             prod: {
                 src: ['src/scripts/app.js'],
-                dest: 'src/public/build.js'
+                dest: 'src/public/js/build.js'
             },
             dev: {
                 options: {
                     debug: true
                 },
                 src: ['src/scripts/app.js'],
-                dest: 'src/public/build.js'
+                dest: 'src/public/js/build.js'
             }
         }
     });

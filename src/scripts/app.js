@@ -8,14 +8,14 @@ var _ = require('underscore'),
 Backbone.$ = jQuery;
 
 var app = _.extend({
-    start: function () {
+    bootstrap: function () {
         this.router = new AppRouter();
         Backbone.history.start({pushState: true});
     }
 });
 
 window.app = app;
-app.start();
+app.bootstrap();
 
 module.exports = app;
 

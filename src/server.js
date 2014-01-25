@@ -8,7 +8,6 @@ var express = require('express'),
     path = require('path'),
     app = express();
 
-
 /**
  * App settings
  */
@@ -23,27 +22,27 @@ app.configure(function () {
     app.use(express.cookieParser('#$(DASfdkj321#"$3287sad'));
     app.use(express.session());
     //app.use(express.basicAuth('username', 'password'));
-    app.use(app.router);
-    app.set('view engine', 'jade');
-    app.set('views', __dirname);
     // static server
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use('/static', express.static(path.join(__dirname, 'public')));
+    // app routes
+    app.use(app.router);
 });
 
 // development only
-/*
 app.configure('development', function () {
   app.use(express.errorHandler());
-}
-*/
+});
+
 
 /**
  * Routes
  */
-var site = require('./site');
 
 // global
-app.get('/', site.index);
+app.get('*', function (req, res) {
+    // render index.html always
+    res.sendfile(__dirname + '/index.html');
+});
 
 /**
  * start server
