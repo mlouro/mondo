@@ -21,7 +21,8 @@
     "backbone": "~1.1.0",
     "envify": "~0.2.0",
     "react": "~0.8.0",
-    "reactify": "~0.5.1"
+    "reactify": "~0.5.1",
+    "hoodie": "~0.5.4"
   },
   "devDependencies": {
     "grunt": "~0.4.2",

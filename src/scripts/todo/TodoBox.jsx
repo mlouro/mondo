@@ -13,7 +13,8 @@ var TodoBox = React.createClass({
         };
     },
     componentWillMount: function () {
-        var data = _.bind(function () { this.setState({
+        var data = _.bind(function () { 
+            this.setState({
                 data: [{
                     'name': 'hello',
                 }, {

@@ -1,21 +1,33 @@
 'use strict';
 
 var _ = require('underscore'),
-    jQuery = require('jquery'),
     Backbone = require('backbone'),
+    jQuery = require('jquery'),
+    //Hoodie = require('hoodie'),
+    Hoodie = require('hoodie/src/hoodie'),
     AppRouter = require('./router');
 
 Backbone.$ = jQuery;
 
 var app = _.extend({
+
+    /*
+     * App starting point
+     */
     bootstrap: function () {
+        // routing
         this.router = new AppRouter();
+        // hoodie/database
+        this.hoodie = new Hoodie('http://127.0.0.1:5984');
+        // boot pushState/history
         Backbone.history.start({pushState: true});
+
+        return this;
     }
+
 });
 
-window.app = app;
-app.bootstrap();
+window.app = app.bootstrap();
 
 module.exports = app;
 
