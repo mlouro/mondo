@@ -18,7 +18,7 @@ var app = _.extend({
         // routing
         this.router = new AppRouter();
         // hoodie/database
-        this.hoodie = new Hoodie('http://127.0.0.1:5984');
+        this.hoodie = new Hoodie();
         // boot pushState/history
         Backbone.history.start({pushState: true});
 
