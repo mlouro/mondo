@@ -4,7 +4,7 @@ var _ = require('underscore'),
     Backbone = require('backbone'),
     jQuery = require('jquery'),
     //Hoodie = require('hoodie'),
-    Hoodie = require('hoodie/src/hoodie'),
+    //Hoodie = require('hoodie/src/hoodie'),
     AppRouter = require('./router');
 
 Backbone.$ = jQuery;
@@ -18,7 +18,7 @@ var app = _.extend({
         // routing
         this.router = new AppRouter();
         // hoodie/database
-        this.hoodie = new Hoodie();
+        //this.hoodie = new Hoodie();
         // boot pushState/history
         Backbone.history.start({pushState: true});
 

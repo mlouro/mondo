@@ -2,7 +2,7 @@
 
 var Backbone = require('backbone'),
     React = require('react'),
-    TodoBox = require('./todo/TodoBox.jsx');
+    TodoBox = require('./apps/todo/TodoBox.jsx');
 
 var router = Backbone.Router.extend({
 

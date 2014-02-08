@@ -38,6 +38,4 @@ var TodoBox = React.createClass({
     }
 });
 
-
 module.exports = TodoBox;
-
