@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+SESSIONNAME="mondo"
+ROOTDIR="/Users/mlouro/webapps/mondo"
+PROJECTDIR="/Users/mlouro/webapps/mondo/mondo"
+tmux has-session -t $SESSIONNAME &> /dev/null
+
+if [ $? != 0 ]
+ then
+    tmux new-session -s $SESSIONNAME -n script -d
+    tmux send-keys -t $SESSIONNAME "cd $ROOTDIR" C-m
+    tmux send-keys -t $SESSIONNAME "source bin/activate" C-m
+    tmux send-keys -t $SESSIONNAME "cd $PROJECTDIR" C-m
+    tmux send-keys -t $SESSIONNAME "hoodie start" C-m
+    tmux new-window -t "1" -n "gulp watch"
+    tmux send-keys -t $SESSIONNAME "cd $ROOTDIR" C-m
+    tmux send-keys -t $SESSIONNAME "source bin/activate" C-m
+    tmux send-keys -t $SESSIONNAME "source bin/postactivate" C-m
+    tmux send-keys -t $SESSIONNAME "cd $PROJECTDIR" C-m
+    tmux send-keys -t $SESSIONNAME "gulp dev" C-m
+    tmux new-window -t "3" -n "git"
+    tmux send-keys -t $SESSIONNAME "cd $ROOTDIR" C-m
+    tmux send-keys -t $SESSIONNAME "source bin/activate" C-m
+    tmux send-keys -t $SESSIONNAME "cd $PROJECTDIR" C-m
+    tmux send-keys -t $SESSIONNAME "git pull" C-m
+fi
+
+tmux attach -t $SESSIONNAME

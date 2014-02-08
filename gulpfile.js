@@ -1,3 +1,5 @@
+"use strict";
+/* global console */
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var browserify = require('gulp-browserify');
@@ -5,7 +7,11 @@ var jshint = require('gulp-jshint');
 var watch = require('gulp-watch');
 var stylish = require('jshint-stylish');
 var refresh = require('gulp-livereload');
-var sass = require('gulp-sass')
+var sass = require('gulp-sass');
+// sass 
+// bourbon is required by neat
+// var bourbon = require('node-bourbon').includePaths;
+var neat = require('node-neat').includePaths;
 
 // livereload
 var lr = require('tiny-lr');
@@ -31,9 +37,10 @@ var sources = {
 var buildDir = './www/';
 
 // Tasks
-// * build javascripts (browserify)
+// * build JavaScript (browserify)
 // * copy static files
-// * lint javascriot
+// * lint JavaScript
+// * build sass
 // * live-reload server
 var tasks = {
   scripts: function () {
@@ -50,22 +57,29 @@ var tasks = {
       .pipe(refresh(server));
   },
   lint: function() {
-    gulp.src(sources.scripts)
-      .pipe(jshint())
-      .pipe(jshint.reporter(stylish))
+    var files = sources.scripts;
+    files.push('./gulpfile.js');
+    gulp.src(files)
+      .pipe(jshint('.jshintrc'))
+      .pipe(jshint.reporter(stylish));
   },
   sass: function() {
+    // neat is an Array and already includes bourbon
     gulp.src(sources.sass)
-      .pipe(sass())
+      .pipe(sass({
+        includePaths: neat
+      }))
       .pipe(gulp.dest(buildDir + 'css/'))
       .pipe(refresh(server));
   },
-  livereload: function() {  
+  livereload: function() {
     server.listen(35729, function(err){
-      if(err) return console.log(err);
+      if(err) {
+        return console.log(err);
+      }
     });
   }
-}
+};
 
 // --------------------------
 // Register our tasks
@@ -78,12 +92,18 @@ gulp.task('default', function() {
 gulp.task('build:js', tasks.scripts);
 gulp.task('build:sass', tasks.sass);
 gulp.task('copy:static', tasks.statics);
-gulp.task('lint:js', tasks.lintjs);
+gulp.task('lint:js', tasks.lint);
 gulp.task('livereload', tasks.livereload);
 // development watch & livereload
+// run from terminal as "gulp dev" to get
+// all the livereload goodies
 gulp.task('dev', function() {
-  // start the livereload server
-  gulp.run('livereload');
+  // initial run
+  gulp.run('livereload',
+    'build:js',
+    'build:sass',
+    'copy:static',
+    'lint:js');
   // watch for js changes
   gulp.watch(sources.scripts, function(event) {
     gulp.run('lint:js', 'build:js');
