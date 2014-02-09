@@ -3,7 +3,34 @@
 @import "bitters/bitters";
 @import "neat";
 
-body {
-    background: yellow;
-    @include linear-gradient(to top, red, orange);
+$mobile: new-breakpoint(min-width 0px 6);
+$tablet: new-breakpoint(min-width 660px 8);
+$desktop: new-breakpoint(min-width 1160px 12);
+
+.main {
+  background: grey;
+
+  @include media($mobile) {
+    .sidebar {
+      @include span-columns(3);
+      background: green;
+    }
+    .content {
+      @include span-columns(3);
+      @include omega();
+      background: red;
+    }
+  }
+
+  @include media($tablet) {
+    .sidebar {
+      @include span-columns(3);
+      background: black;
+    }
+    .content {
+      @include span-columns(5);
+      @include omega();
+      background: yellow;
+    }
+  }
 }
