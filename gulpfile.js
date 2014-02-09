@@ -21,6 +21,7 @@ var server = lr();
 var sources = {
   scripts: [
     './src/*.js',
+    './src/**/*.jsx',
     './src/apps/**/*.js',
     './src/apps/**/*.jsx'
   ],

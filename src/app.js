@@ -7,6 +7,8 @@ var jQuery = require('jquery');
   //Hoodie = require('hoodie/src/hoodie'),
 var AppRouter = require('./router');
 
+window.history = null;
+
 Backbone.$ = jQuery;
 
 var app = _.extend({
@@ -14,8 +16,6 @@ var app = _.extend({
    * App starting point
    */
   bootstrap: function () {
-    // routing
-    this.router = new AppRouter();
     // hoodie/database
     //this.hoodie = new Hoodie();
     // boot pushState/history
@@ -27,4 +27,3 @@ var app = _.extend({
 window.app = app.bootstrap();
 
 module.exports = app;
-

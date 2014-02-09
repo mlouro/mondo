@@ -7,30 +7,57 @@ $mobile: new-breakpoint(min-width 0px 6);
 $tablet: new-breakpoint(min-width 660px 8);
 $desktop: new-breakpoint(min-width 1160px 12);
 
-.main {
-  background: grey;
+/* 
+ * COLOR
+ */
+$darkest: rgb(14,14,14);
+$dark: rgb(25,25,25);
+$darkLight: rgb(36,36,36);
+$gray: rgb(150,150,150);
+
+/* 
+ * Main/HTML
+ */
+html, body, #main {
+  height: 100%;
+}
+
+#main {
+
+  .sidebar {
+    height: 100%;
+    background: rgb(25,25,25);
+    li {
+      padding: 10px 10px 10px 30px;
+      border-bottom: 1px solid $darkLight;
+
+      &.active {
+        background: $darkest;
+      }
+    }
+    a {
+      display: block;
+      color: $gray;
+    }
+  }
 
   @include media($mobile) {
     .sidebar {
       @include span-columns(3);
-      background: green;
     }
     .content {
       @include span-columns(3);
       @include omega();
-      background: red;
     }
   }
 
   @include media($tablet) {
     .sidebar {
       @include span-columns(3);
-      background: black;
     }
     .content {
       @include span-columns(5);
       @include omega();
-      background: yellow;
     }
   }
 }
