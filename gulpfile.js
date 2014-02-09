@@ -24,6 +24,11 @@ var sources = {
     './src/apps/**/*.js',
     './src/apps/**/*.jsx'
   ],
+  jshint: [
+    './gulpfile.js',
+    './src/*.js',
+    './src/apps/**/*.js'
+  ],
   css: './src/scss/**/*.scss',
   sass: './src/scss/app.scss',
   statics: [
@@ -57,9 +62,7 @@ var tasks = {
       .pipe(refresh(server));
   },
   lint: function() {
-    var files = sources.scripts;
-    files.push('./gulpfile.js');
-    gulp.src(files)
+    gulp.src(sources.jshint)
       .pipe(jshint('.jshintrc'))
       .pipe(jshint.reporter(stylish));
   },
@@ -86,7 +89,7 @@ var tasks = {
 // --------------------------
 // default
 gulp.task('default', function() {
-  gulp.run('lint:js', 'build:js', 'copy:static');
+  gulp.run('copy:static', 'build:js', 'lint:js');
 });
 // gulp task setup
 gulp.task('build:js', tasks.scripts);
