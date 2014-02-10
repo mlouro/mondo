@@ -10,6 +10,8 @@ var Sidebar = require('./Sidebar.jsx');
 // content views
 var Content = require('./Content.jsx');
 var TodoBox = require('./todo/TodoBox.jsx');
+// app routes
+var todo = require('./todo/routes');
 
 var Main = React.createClass({
   getInitialState: function() {
@@ -31,9 +33,9 @@ var Main = React.createClass({
     // /history  : history
     //
     router.on('route:index', this.index);
-    router.on('route:todo', this.todo);
-    router.on('route:upcoming', this.upcoming);
-    router.on('route:history', this.history);
+    router.on('route:todo', todo.todo.bind(this));
+    router.on('route:upcoming', todo.upcoming.bind(this));
+    router.on('route:history', todo.history.bind(this));
     // start history
     Backbone.history.start({pushState: false});
   },
@@ -59,7 +61,7 @@ var Main = React.createClass({
       }),
       content: TodoBox({})
     });
-  },
+  }/*,
   todo: function() {
     console.log('main:todo');
     this.setState({
@@ -89,7 +91,7 @@ var Main = React.createClass({
       }),
       content: TodoBox({})
     });
-  }
+  }*/
 });
 
 module.exports = Main;
