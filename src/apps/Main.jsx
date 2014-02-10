@@ -22,13 +22,22 @@ var Main = React.createClass({
     }
   },
   componentWillMount: function() {
+    // --------------------
     // routes
+    // --------------------
+    // /         : index
+    // /todo     : todo
+    // /upcoming : upcoming
+    // /history  : history
+    //
     router.on('route:index', this.index);
+    router.on('route:todo', this.todo);
+    router.on('route:upcoming', this.upcoming);
+    router.on('route:history', this.history);
     // start history
     Backbone.history.start({pushState: false});
   },
   render: function() {
-    console.log('Main:render');
     return (
       <div id="main">
         <div id="sidebar" className="sidebar">
@@ -42,9 +51,40 @@ var Main = React.createClass({
   },
   // pages
   index: function() {
+    console.log('main:index');
     this.setState({
       sidebar: Sidebar({
         'active': 'dashboard',
+        'items': urls
+      }),
+      content: TodoBox({})
+    });
+  },
+  todo: function() {
+    console.log('main:todo');
+    this.setState({
+      sidebar: Sidebar({
+        'active': 'todo',
+        'items': urls
+      }),
+      content: TodoBox({})
+    });
+  },
+  upcoming: function() {
+    console.log('main:upcoming');
+    this.setState({
+      sidebar: Sidebar({
+        'active': 'upcoming',
+        'items': urls
+      }),
+      content: TodoBox({})
+    });
+  },
+  history: function() {
+    console.log('main:history');
+    this.setState({
+      sidebar: Sidebar({
+        'active': 'history',
         'items': urls
       }),
       content: TodoBox({})

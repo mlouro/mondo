@@ -5,7 +5,7 @@ var React = require('react');
 
 var Sidebar = React.createClass({
   render: function() {
-    console.log('Sidebar:render');
+    console.log('Sidebar:render', this.props.active);
     return (
       <ul>
         {_.map(this.props.items, function(item, key) {
