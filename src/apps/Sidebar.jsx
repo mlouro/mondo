@@ -4,18 +4,13 @@ var _ = require('underscore');
 var React = require('react');
 
 var Sidebar = React.createClass({
-  getInitialState: function() {
-    return {
-      pages: this.props.urls,
-      active: this.props.active
-    };
-  },
   render: function() {
+    console.log('Sidebar:render');
     return (
       <ul>
-        {_.map(this.state.pages, function(item, key) {
+        {_.map(this.props.items, function(item, key) {
           return (
-            <li className={item.name === this.state.active ? 'active' : ''}>
+            <li className={item.name === this.props.active ? 'active' : ''}>
               <a href={item.href} data-name={item.name}>{item.title}</a>
             </li>
           )

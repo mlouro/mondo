@@ -7,37 +7,59 @@ $mobile: new-breakpoint(min-width 0px 6);
 $tablet: new-breakpoint(min-width 660px 8);
 $desktop: new-breakpoint(min-width 1160px 12);
 
-/* 
- * COLOR
- */
+// --------------------------
+// Color
+// --------------------------
 $darkest: rgb(14,14,14);
-$dark: rgb(25,25,25);
-$darkLight: rgb(36,36,36);
+$dark: rgb(24,29,33);
+$darkLight: rgb(33,55,66);
 $gray: rgb(150,150,150);
+$white: rgb(220,220,220);
 
-/* 
- * Main/HTML
- */
-html, body, #main {
+$bege: rgb(219,213,188);
+$darkbege: rgb(151,133,90);
+
+$blue: rgb(45,129,255);
+$blueLight: rgba(214,235,255,0.3);
+
+$greenest: rgb(41,96,20);
+$green: rgb(25,149,0);
+$greenly: rgb(75,173,36);
+
+$yellow: rgb(217,133,16);
+
+// --------------------------
+// Main Structure
+// --------------------------
+html, body, #container, #main {
   height: 100%;
 }
 
 #main {
+  background-color: $blueLight;
 
   .sidebar {
     height: 100%;
-    background: rgb(25,25,25);
+    background: $dark;
+    padding-top: 100px;
+    ul {
+      border-top: 1px solid $darkLight;
+    }
     li {
-      padding: 10px 10px 10px 30px;
       border-bottom: 1px solid $darkLight;
-
       &.active {
-        background: $darkest;
+        background: $yellow;
+        a {
+          color: $white;
+        }
       }
     }
     a {
       display: block;
-      color: $gray;
+      color: $white;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 10px 10px 10px 30px;
     }
   }
 
