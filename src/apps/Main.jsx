@@ -35,7 +35,7 @@ var Main = React.createClass({
           {this.state.sidebar}
         </div>
         <div id="content" className="content">
-          {this.state.main}
+          {this.state.content}
         </div>
       </div>
     );
