@@ -18,7 +18,8 @@
     "hoodie-plugin-email": "~0.1.4",
     "hoodie-plugin-users": "~0.1.0",
     "director": "~1.2.2",
-    "jquery": "~2.1.0"
+    "jquery": "~2.1.0",
+    "loglevel": "~0.5.0"
   },
   "subdomain": "hoodie-mondohood",
   "domains": [

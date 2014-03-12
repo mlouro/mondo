@@ -5,6 +5,7 @@ var Backbone = require('backbone');
 var React = require('react');
 var router = require('../router');
 var urls = require('../urls');
+var log = require('loglevel');
 // core views views
 var Sidebar = require('./Sidebar.jsx');
 var Content = require('./Content.jsx');
@@ -53,7 +54,7 @@ var Main = React.createClass({
   },
   // pages
   index: function() {
-    console.log('main:index');
+    log.info('main:index');
     this.setState({
       sidebar: Sidebar({
         'active': 'dashboard',

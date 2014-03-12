@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('underscore');
+var log = require('loglevel');
 var urls = require('../urls');
 // core views
 var Sidebar = require('../core/Sidebar.jsx');
@@ -10,7 +11,7 @@ var TodoBox = require('./TodoBox.jsx');
 
 module.exports = {
   todo: function() {
-    console.log('main:todo');
+    log.info('main:todo');
     this.setState({
       sidebar: Sidebar({
       'active': 'todo',
@@ -20,7 +21,7 @@ module.exports = {
     });
   },
   upcoming: function() {
-    console.log('main:upcoming');
+    log.info('main:upcoming');
     this.setState({
       sidebar: Sidebar({
       'active': 'upcoming',
@@ -30,7 +31,7 @@ module.exports = {
     });
   },
   history: function() {
-    console.log('main:history');
+    log.info('main:history');
     this.setState({
       sidebar: Sidebar({
       'active': 'history',
