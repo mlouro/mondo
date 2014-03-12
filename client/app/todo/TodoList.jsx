@@ -9,13 +9,15 @@ var TodoList = React.createClass({
   render: function() {
     log.info('TodoList:render');
     return (
-      <ul className="todoList">
-        {this.props.data.map(Todo)}
-      </ul>
+      React.DOM.ul(
+        {'className': 'todoList'},
+        this.props.data.map(function(todo, index) {
+          return Todo(_.extend({'key': index}, todo));
+        }.bind(this))
+      )
     );
   }
 });
 
 
 module.exports = TodoList;
-
