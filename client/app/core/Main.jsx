@@ -5,13 +5,13 @@ var Backbone = require('backbone');
 var React = require('react');
 var router = require('../router');
 var urls = require('../urls');
-// sidebar views
+// core views views
 var Sidebar = require('./Sidebar.jsx');
-// content views
 var Content = require('./Content.jsx');
-var TodoBox = require('./todo/TodoBox.jsx');
-// app routes
-var todo = require('./todo/routes');
+// todo views
+var TodoBox = require('../todo/TodoBox.jsx');
+// todo routes
+var todo = require('../todo/routes');
 
 var Main = React.createClass({
   getInitialState: function() {

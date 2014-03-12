@@ -4,7 +4,7 @@ var _ = require('underscore');
 var Backbone = require('backbone');
 var jQuery = require('jquery');
 var React = require('react');
-var MainView = require('./app/Main.jsx');
+var MainView = require('./app/core/Main.jsx');
 
 Backbone.$ = jQuery;
 

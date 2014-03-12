@@ -1,11 +1,11 @@
 'use strict';
 
 var _ = require('underscore');
-var urls = require('../../urls');
-// sidebar
-var Sidebar = require('../Sidebar.jsx');
-// content views
-var Content = require('../Content.jsx');
+var urls = require('../urls');
+// core views
+var Sidebar = require('../core/Sidebar.jsx');
+var Content = require('../core/Content.jsx');
+// todo box
 var TodoBox = require('./TodoBox.jsx');
 
 module.exports = {

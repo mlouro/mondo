@@ -20,23 +20,21 @@ var server = lr();
 // File sources
 var sources = {
   scripts: [
-    './src/*.js',
-    './src/**/*.jsx',
-    './src/apps/**/*.js',
-    './src/apps/**/*.jsx'
+    './client/index.js',
+    './client/app/**/*.js',
+    './client/app/**/*.jsx'
   ],
   jshint: [
     './gulpfile.js',
-    './src/*.js',
-    './src/apps/**/*.js'
+    './client/*.js',
   ],
-  css: './src/scss/**/*.scss',
-  sass: './src/scss/app.scss',
+  css: './client/scss/**/*.scss',
+  sass: './client/scss/app.scss',
   statics: [
-    './src/*.html',
-    './src/static/**/*',
+    './client/templates/*.html',
+    './client/static/**/*',
   ],
-  browserify: './src/app.js'
+  browserify: './client/index.js'
 };
 
 // Build destination

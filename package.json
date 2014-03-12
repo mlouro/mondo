@@ -17,7 +17,8 @@
     "hoodie-plugin-appconfig": "~0.2.0",
     "hoodie-plugin-email": "~0.1.4",
     "hoodie-plugin-users": "~0.1.0",
-    "director": "~1.2.2"
+    "director": "~1.2.2",
+    "jquery": "~2.1.0"
   },
   "subdomain": "hoodie-mondohood",
   "domains": [
@@ -33,9 +34,6 @@
       "hoodie-plugin-email",
       "hoodie-plugin-users"
     ]
-  },
-  "browser": {
-    "jquery": "./src/vendor/jquery/jquery-2.0.3.js"
   },
   "browserify": {
     "transform": [
