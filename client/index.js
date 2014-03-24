@@ -2,25 +2,30 @@
 
 var _ = require('underscore');
 var Backbone = require('backbone');
-var jQuery = require('jquery');
+var $ = require('jquery');
 var React = require('react');
-var MainView = require('./app/core/Main.jsx');
+var urls = require('./app/urls');
+var MainView = require('./app/App.jsx');
 
-Backbone.$ = jQuery;
+// backbone > jQuery configuration
+Backbone.$ = $;
 
-var app = _.extend({
-  /*
-   * App starting point
-   */
-  bootstrap: function () {
-    // hoodie/database
-    //this.hoodie = new Hoodie();
-    // boot pushState/history
-    React.renderComponent(MainView({}), document.getElementById('container'));
-    return this;
+// override click
+$(document).on('click', 'a[href]', function (evt) {
+  var $link = $(evt.currentTarget);
+  var href = $link.attr('href');
+  var urlInList = href && _.some(urls, function(url) {
+    return url.href === href;
+  });
+  // use pushState only when a valid url is set
+  // TODO: improve the check
+  if (urlInList) {
+    // navigate to url
+    Backbone.history.navigate(href, {trigger: true});
+    // internal link, return false
+    return false;
   }
 });
 
-window.app = app.bootstrap();
-
-module.exports = app;
+// start the app
+React.renderComponent(MainView({}), document.getElementById('container'));

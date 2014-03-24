@@ -3,16 +3,17 @@
 var _ = require('underscore');
 var Backbone = require('backbone');
 var React = require('react');
-var router = require('../router');
-var urls = require('../urls');
+var router = require('./router');
+var urls = require('./urls');
 var log = require('loglevel');
 // core views views
-var Sidebar = require('./Sidebar.jsx');
-var Content = require('./Content.jsx');
+var Sidebar = require('./core/Sidebar.jsx');
+var Content = require('./core/Content.jsx');
 // todo views
-var TodoBox = require('../todo/TodoBox.jsx');
+var TodoBox = require('./todo/TodoBox.jsx');
+var TodoForm = require('./todo/TodoForm.jsx');
 // todo routes
-var todo = require('../todo/routes');
+var todo = require('./todo/routes');
 
 var Main = React.createClass({
   getInitialState: function() {
@@ -60,7 +61,10 @@ var Main = React.createClass({
         'active': 'dashboard',
         'items': urls
       }),
-      content: TodoBox({})
+      content: React.DOM.div({},
+        TodoBox({}),
+        TodoForm({})
+      )
     });
   }
 });
