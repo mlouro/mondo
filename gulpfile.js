@@ -1,5 +1,5 @@
 "use strict";
-/* global console */
+/* global console, process */
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var browserify = require('gulp-browserify');
@@ -52,7 +52,10 @@ var tasks = {
       .pipe(browserify({
         debug : !gutil.env.production
       }))
-      .on('error', gutil.log)
+      .on('error', function(error) {
+        gutil.log(error);
+        process.stdout.write('\x07');
+      })
       .pipe(gulp.dest(buildDir))
       .pipe(refresh(server));
   },
@@ -73,6 +76,7 @@ var tasks = {
         includePaths: neat,
         sourceComments: 'map'
       }))
+      .on('error', gutil.log)
       .pipe(gulp.dest(buildDir + 'css/'))
       .pipe(refresh(server));
   },
