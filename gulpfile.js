@@ -52,6 +52,7 @@ var tasks = {
       .pipe(browserify({
         debug : !gutil.env.production
       }))
+      .on('error', gutil.log)
       .pipe(gulp.dest(buildDir))
       .pipe(refresh(server));
   },
@@ -69,7 +70,8 @@ var tasks = {
     // neat is an Array and already includes bourbon
     gulp.src(sources.sass)
       .pipe(sass({
-        includePaths: neat
+        includePaths: neat,
+        sourceComments: 'map'
       }))
       .pipe(gulp.dest(buildDir + 'css/'))
       .pipe(refresh(server));

@@ -3,6 +3,7 @@
 var _ = require('underscore');
 var React = require('react');
 var TodoList = require('./TodoList.jsx');
+var log = require('loglevel');
 
 var TodoBox = React.createClass({
   getInitialState: function () {
@@ -34,6 +35,10 @@ var TodoBox = React.createClass({
         <TodoList data={this.state.data}/>
       </div>
     );
+  },
+
+  shouldComponentUpdate: function(currentProps, nextProps) {
+    log.info('TodoBox:shouldComponentUpdate');
   }
 });
 
