@@ -1,3 +1,6 @@
 var Hoodie = require('hoodie');
 
-module.exports = new Hoodie();
+var store = new Hoodie();
+window.hoodie = store;
+
+module.exports = store;

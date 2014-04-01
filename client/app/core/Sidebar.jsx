@@ -8,15 +8,17 @@ var Sidebar = React.createClass({
   render: function() {
     log.info('Sidebar:render', this.props.active);
     return (
-      <ul>
-        {_.map(this.props.items, function(item, key) {
-          return (
-            <li key={key} className={item.name === this.props.active ? 'active' : ''}>
-              <a href={item.href} data-name={item.name}>{item.title}</a>
-            </li>
-          )
-        }.bind(this))}
-      </ul>
+      <div id="sidebar" className="sidebar">
+        <ul>
+          {_.map(this.props.items, function(item, key) {
+            return (
+              <li key={key} className={item.name === this.props.active ? 'active' : ''}>
+                <a href={item.href} data-name={item.name}>{item.title}</a>
+              </li>
+            )
+          }.bind(this))}
+        </ul>
+      </div>
     )
   }
 });

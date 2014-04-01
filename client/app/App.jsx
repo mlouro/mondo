@@ -3,43 +3,36 @@
 var _ = require('underscore');
 var Backbone = require('backbone');
 var React = require('react');
-var router = require('./router');
-var urls = require('./urls');
 var log = require('loglevel');
-// core views views
-var Sidebar = require('./core/Sidebar.jsx');
-var Content = require('./core/Content.jsx');
 // todo views
-var TodoBox = require('./todo/TodoBox.jsx');
-var TodoForm = require('./todo/TodoForm.jsx');
-// todo routes
-var todo = require('./todo/routes');
+var IndexView = require('./todo/views/Index.jsx');
+var TodosView = require('./todo/views/Todos.jsx');
+var UpcomingView = require('./todo/views/Upcoming.jsx');
+var HistoryView = require('./todo/views/History.jsx');
 // hoodie
 var hoodie = require('./store');
 
 var Main = React.createClass({
   getInitialState: function() {
-    // initial sidebar and content
-    // regardless of route. 
-    // (this never renders? router is fast enough to do the state change?)
+    // initial route
     return {
-      'sidebar': Sidebar({active: '', items: urls}),
-      'content': Content({})
+      'route': 'index'
     }
   },
   componentWillMount: function() {
-    // --------------------
-    // routes
-    // --------------------
-    // /         : index
-    // /todo     : todo
-    // /upcoming : upcoming
-    // /history  : history
-    //
-    router.on('route:index', this.index);
-    router.on('route:todo', todo.todo.bind(this));
-    router.on('route:upcoming', todo.upcoming.bind(this));
-    router.on('route:history', todo.history.bind(this));
+    // 
+    // URL Router
+    // /          -> views/Index
+    // /todo      -> views/Todos
+    // /upcoming  -> views/Upcoming
+    // /todo      -> views/History
+    // 
+    var router = new Backbone.Router();
+    router.route('', _.partial(this.setState, {'route': 'index'}).bind(this));
+    router.route('todo', _.partial(this.setState, {'route': 'todo'}).bind(this));
+    router.route('upcoming', _.partial(this.setState, {'route': 'upcoming'}).bind(this));
+    router.route('history', _.partial(this.setState, {'route': 'history'}).bind(this));
+
     // start history
     Backbone.history.start({pushState: false});
 
@@ -49,30 +42,22 @@ var Main = React.createClass({
     }.bind(this));
   },
   render: function() {
-    return (
-      <div id="main">
-        <div id="sidebar" className="sidebar">
-          {this.state.sidebar}
-        </div>
-        <div id="content" className="content">
-          {this.state.content}
-        </div>
-      </div>
-    );
-  },
-  // pages
-  index: function() {
-    log.info('main:index');
-    this.setState({
-      sidebar: Sidebar({
-        'active': 'dashboard',
-        'items': urls
-      }),
-      content: React.DOM.div({},
-        TodoBox({}),
-        TodoForm({})
-      )
-    });
+    switch (this.state.route) {
+      case 'index':
+        return IndexView();
+        break;
+      case 'todo':
+        return TodosView();
+        break;
+      case 'upcoming':
+        return UpcomingView();
+        break;
+      case 'history':
+        return HistoryView();
+        break;
+      default:
+        break;
+    }
   }
 });
 
