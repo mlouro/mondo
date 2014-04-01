@@ -4,7 +4,7 @@ var React = require('react');
 var log = require('loglevel');
 var urls = require('../../urls');
 // core views
-var Sidebar = require('../../core/Sidebar.jsx');
+var Sidebar = require('../../components/Sidebar.jsx');
 // todo box
 var TodoBox = require('../TodoBox.jsx');
 // hoodie
@@ -17,6 +17,7 @@ var TodosView = React.createClass({
     }
   },
   componentWillMount: function() {
+    // refresh state on mount and update
     this.componentWillReceiveProps();
   },
   componentWillReceiveProps: function() {

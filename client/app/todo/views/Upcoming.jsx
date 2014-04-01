@@ -3,7 +3,7 @@
 var React = require('react');
 var urls = require('../../urls');
 // core views
-var Sidebar = require('../../core/Sidebar.jsx');
+var Sidebar = require('../../components/Sidebar.jsx');
 // todo box
 var TodoBox = require('../TodoBox.jsx');
 // hoodie
