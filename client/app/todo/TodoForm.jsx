@@ -3,34 +3,58 @@
 var _ = require('underscore');
 var React = require('react');
 var config = require('../core/config');
+var hoodie = require('../store');
 
 var TodoForm = React.createClass({
-  render: function () {
+  getInitialState: function() {
+    return {
+      'description': '',
+      'startDate': '',
+      'endDate': '',
+      'recurring': ''
+    }
+  },
+  handleSubmit: function() {
+    var data = {
+      'description': this.refs.description.getDOMNode().value,
+      'startDate': this.refs.startDate.getDOMNode().value,
+      'endDate': this.refs.endDate.getDOMNode().value,
+      'recurring': this.refs.recurring.getDOMNode().value
+    }
+    hoodie.store.add('todo', data);
+    return false;
+  },
+  render: function() {
     return (
       React.DOM.form({
           'method': 'post',
-          'action': '.'
+          'action': '.',
+          'onSubmit': this.handleSubmit
         },
         React.DOM.input({
           'type': 'text',
-          'name': 'description',
+          'ref': 'description',
           'defaultValue': '',
-          'placeholder': 'description'
+          'placeholder': 'description',
+          'required': true
         }),
         React.DOM.input({
           'type': 'date',
-          'name': 'startDate',
+          'ref': 'startDate',
           'defaultValue': '',
-          'placeholder': 'start date'
+          'placeholder': 'start date',
+          'required': true
         }),
         React.DOM.input({
           'type': 'date',
-          'name': 'endDate',
+          'ref': 'endDate',
           'defaultValue': '',
-          'placeholder': 'end date'
+          'placeholder': 'end date',
+          'required': true
         }),
         React.DOM.select({
-            'name': 'recurring'
+            'ref': 'recurring',
+            'required': true
           },
           _.map(config.recurring, function(name, key) {
             return React.DOM.option({

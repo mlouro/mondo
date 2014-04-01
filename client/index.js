@@ -6,9 +6,13 @@ var $ = require('jquery');
 var React = require('react');
 var urls = require('./app/urls');
 var MainView = require('./app/App.jsx');
+var log = require('loglevel');
 
 // backbone > jQuery configuration
 Backbone.$ = $;
+
+// loglevel
+log.enableAll();
 
 // override click
 $(document).on('click', 'a[href]', function (evt) {

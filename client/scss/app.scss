@@ -2,6 +2,7 @@
 @import "bourbon";
 @import "bitters/bitters";
 @import "neat";
+@import "components/todo-list";
 
 $mobile: new-breakpoint(min-width 0px 6);
 $tablet: new-breakpoint(min-width 660px 8);
@@ -69,7 +70,7 @@ html, body, #container, #main {
     }
     .content {
       @include span-columns(3);
-      @include omega();
+      padding-right: 4.82916%;
     }
   }
 
@@ -79,7 +80,13 @@ html, body, #container, #main {
     }
     .content {
       @include span-columns(5);
-      @include omega();
+      padding-right: 3.578%;
+    }
+  }
+
+  #content {
+    h1 {
+      margin-bottom: 0.5em;
     }
   }
 }

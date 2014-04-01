@@ -14,6 +14,8 @@ var TodoBox = require('./todo/TodoBox.jsx');
 var TodoForm = require('./todo/TodoForm.jsx');
 // todo routes
 var todo = require('./todo/routes');
+// hoodie
+var hoodie = require('./store');
 
 var Main = React.createClass({
   getInitialState: function() {
@@ -40,6 +42,11 @@ var Main = React.createClass({
     router.on('route:history', todo.history.bind(this));
     // start history
     Backbone.history.start({pushState: false});
+
+    // force update
+    hoodie.store.on('change', function() {
+      this.forceUpdate();
+    }.bind(this));
   },
   render: function() {
     return (
