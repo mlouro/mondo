@@ -6,7 +6,6 @@ var hoodie = require('../store');
 var TodoActions = {
   // store item type
   TYPE: 'todo',
-
   //
   // Toggle whether a single ToDo is complete
   // @param  {object} todo
@@ -15,7 +14,6 @@ var TodoActions = {
     // reverse todo.complete
     var complete = todo.complete ? false : true;
     // update store
-    log.info('todoActions:toggleComplete', complete);
     hoodie.store.update(this.TYPE, todo.id, {'complete': complete});
   }
 };

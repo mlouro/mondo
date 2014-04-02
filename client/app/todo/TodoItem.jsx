@@ -7,7 +7,6 @@ var log = require('loglevel');
 var todoActions = require('./todoActions');
 
 var Todo = React.createClass({
-
   //
   // Toggle checkbox event handler
   //
