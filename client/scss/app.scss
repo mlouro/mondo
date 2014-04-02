@@ -3,6 +3,7 @@
 @import "bitters/bitters";
 @import "neat";
 @import "components/todo-list";
+@import "components/todo-item";
 
 $mobile: new-breakpoint(min-width 0px 6);
 $tablet: new-breakpoint(min-width 660px 8);

@@ -32,6 +32,7 @@ var TodosView = React.createClass({
       <div id="main">
         <Sidebar active='todo' items={urls} />
         <div id="content" className="content">
+          <h1>Todos</h1>
           <TodoBox todos={this.state.todos} />
         </div>
       </div>

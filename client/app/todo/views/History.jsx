@@ -30,6 +30,7 @@ var HistoryView = React.createClass({
       <div id="main">
         <Sidebar active='history' items={urls} />
         <div id="content" className="content">
+          <h1>History</h1>
           <TodoBox todos={this.state.todos} />
         </div>
       </div>

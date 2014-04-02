@@ -30,6 +30,7 @@ var UpcomingView = React.createClass({
       <div id="main">
         <Sidebar active='upcoming' items={urls} />
         <div id="content" className="content">
+          <h1>Upcoming</h1>
           <TodoBox todos={this.state.todos} />
         </div>
       </div>

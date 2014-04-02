@@ -17,7 +17,7 @@ fieldset {
 input,
 label,
 select {
-  display: block;
+  display: inline-block;
   font-family: $form-font-family;
   font-size: $form-font-size;
 }

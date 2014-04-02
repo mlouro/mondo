@@ -14,16 +14,32 @@ var Todo = React.createClass({
     todoActions.toggleComplete(this.props.todo);
   },
   render: function () {
-    var due = moment(this.props.todo.endDate, "YYYY-MM-DD").fromNow();
+    var todo = this.props.todo;
+    var todoInfo;
+    if (todo.complete) {
+      todoInfo = React.DOM.span({'className': 'todo-status'},
+        React.DOM.strong({'className': 'status completed'}, 'completed'),
+        React.DOM.span({'children': moment(this.props.todo.endDate).format('MMMM Do YYYY [at] h:mm:ss a')})
+      )
+    } else {
+      todoInfo = React.DOM.span({'className': 'todo-status'},
+        React.DOM.strong({'className': 'status due'}, 'due'),
+        React.DOM.span({'children': moment(this.props.todo.endDate, "YYYY-MM-DD").fromNow()})
+      )
+    }
     return (
-      <li>
-        <label>
-          <input type="checkbox" 
-            onChange={this._toggleComplete} 
-            checked={this.props.todo.complete} /> {this.props.todo.description}{" "}
-          <strong>due</strong>{" "}{due}
-        </label>
-      </li>
+      React.DOM.li({'className': 'todo-item'},
+        React.DOM.label({},
+          React.DOM.input({
+              'type': 'checkbox',
+              'onChange': this._toggleComplete,
+              'checked': todo.complete
+            },
+            React.DOM.span({'children': todo.description})
+          )
+        ),
+        todoInfo
+      )
     );
   },
   componentWillUpdate: function() {

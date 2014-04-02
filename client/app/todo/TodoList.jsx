@@ -10,7 +10,7 @@ var TodoList = React.createClass({
     log.info('TodoList:render');
     return (
       React.DOM.ul(
-        {'className': 'todoList'},
+        {'className': 'todo-list'},
         this.props.todos.map(function(todo, index) {
           return TodoItem({'key': index, 'todo': todo});
         }.bind(this))
