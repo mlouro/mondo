@@ -1,0 +1,23 @@
+.todo-item {
+  label {
+    margin-right: 0.5em;
+  }
+  .todo-status {
+    .status {
+      display: inline-block;
+      margin-right: 0.3em;
+      padding: 0.1em 0.4em;
+      &.completed {
+        background: green;
+        color: #FFF;
+      }
+      &.due {
+        background: yellow;
+      }
+      &.late {
+        background: red;
+      }
+    }
+
+  }
+}
