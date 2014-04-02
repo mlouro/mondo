@@ -6,8 +6,8 @@ var urls = require('../../urls');
 var Sidebar = require('../../components/Sidebar.jsx');
 // todo box
 var TodoBox = require('../TodoBox.jsx');
-// hoodie
-var hoodie = require('../../store');
+// store
+var store = require('../todoStore');
 
 var UpcomingView = React.createClass({
   getInitialState: function() {
@@ -15,10 +15,15 @@ var UpcomingView = React.createClass({
       'todos': []
     }
   },
-  componentWillUpdate: function() {
-    hoodie.store.findAll('todo').done(function(todos) {
-      this.setState('todos', todos);
-    });
+  componentWillMount: function() {
+    // refresh state on mount and update
+    store.getUpcoming(this.updateState);
+  },
+  componentWillReceiveProps: function() {
+    store.getUpcoming(this.updateState);
+  },
+  updateState: function(todos) {
+    this.setState({'todos': todos});
   },
   render: function() {
     return (

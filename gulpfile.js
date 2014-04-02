@@ -20,7 +20,7 @@ var server = lr();
 // File sources
 var sources = {
   scripts: [
-    './client/index.js',
+    './client/app.js',
     './client/app/**/*.js',
     './client/app/**/*.jsx'
   ],
@@ -34,7 +34,7 @@ var sources = {
     './client/templates/*.html',
     './client/static/**/*',
   ],
-  browserify: './client/index.js'
+  browserify: './client/app.js'
 };
 
 // Build destination

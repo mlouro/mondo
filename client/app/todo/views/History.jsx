@@ -6,8 +6,8 @@ var urls = require('../../urls');
 var Sidebar = require('../../components/Sidebar.jsx');
 // todo box
 var TodoBox = require('../TodoBox.jsx');
-// hoodie
-var hoodie = require('../../store');
+// store
+var store = require('../todoStore');
 
 var HistoryView = React.createClass({
   getInitialState: function() {
@@ -15,13 +15,15 @@ var HistoryView = React.createClass({
       'todos': []
     }
   },
-  componentWillUpdate: function() {
-    hoodie.store.findAll('todo').done(function(object) {
-      if(object.type === 'todo' && object.complete === true){
-        return true;
-      }
-      this.setState('todos', todos);
-    });
+  componentWillMount: function() {
+    // refresh state on mount and update
+    store.getCompleted(this.updateState);
+  },
+  componentWillReceiveProps: function() {
+    store.getCompleted(this.updateState);
+  },
+  updateState: function(todos) {
+    this.setState({'todos': todos});
   },
   render: function() {
     return (

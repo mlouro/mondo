@@ -7,8 +7,8 @@ var urls = require('../../urls');
 var Sidebar = require('../../components/Sidebar.jsx');
 // todo box
 var TodoBox = require('../TodoBox.jsx');
-// hoodie
-var hoodie = require('../../store');
+// store
+var store = require('../todoStore');
 
 var TodosView = React.createClass({
   getInitialState: function() {
@@ -18,12 +18,13 @@ var TodosView = React.createClass({
   },
   componentWillMount: function() {
     // refresh state on mount and update
-    this.componentWillReceiveProps();
+    store.getActive(this.updateState);
   },
   componentWillReceiveProps: function() {
-    hoodie.store.findAll('todo').done(function(todos) {
-      this.setState({'todos': todos});
-    }.bind(this));
+    store.getActive(this.updateState);
+  },
+  updateState: function(todos) {
+    this.setState({'todos': todos});
   },
   render: function() {
     log.info('Todos:render');
